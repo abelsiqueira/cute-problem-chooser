@@ -5,6 +5,11 @@ import os
 
 data = json.load(open("../sif.json"))
 
+# Removing .SIF from the problem name.
+for problem in data.keys():
+    if ".SIF" in problem:
+        data[problem[0:-4]] = data.pop(problem)
+
 # Needs improvement
 # Conditions
 

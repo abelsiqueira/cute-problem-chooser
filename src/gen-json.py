@@ -38,8 +38,8 @@ def get_problem_data(problem):
     return data
 
 try:
-    #sifdir = os.environ["MASTSIF"]
-    sifdir = "tmpdir/"
+    sifdir = os.environ["MASTSIF"]
+    #sifdir = "tmpdir/"
 except:
     print("ERROR: $MASTSIF not found. Have you installed CUTEst?")
 
