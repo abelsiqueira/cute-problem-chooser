@@ -1,7 +1,7 @@
 cute-problem-chooser
 ====================
 
-Copyright 2014 - Abel Soares Siqueira - abel.s.siqueira@gmail.com
+Copyright 2014-2015 - Abel Soares Siqueira - abel.s.siqueira@gmail.com
 Gpl v3.
 
 Based on the CUTEr Problem Chooser.
@@ -12,72 +12,53 @@ Contributors of the original project:
 
 * Leandro Prudente - lfprudente@gmail.com
 * Raniere Gaia Costa da Silva - r.gaia.cs@gmail.com
-* Me - my mail
+* Me - abel.s.siqueira@gmail.com
 
 * * *
 Overview
 --------
 
-There will be some scripts to generate important information, the last updated
-information files (so you don't have to run those scripts often), and a script
-or program to separate the problems you want.
+In the beginning of 2015, the scripts were completely remade, because of two
+things:
 
-So far:
+  - The classification of one problem in the site was wrong, which means more
+    could be also.
+  - It is possible to obtain all information obtained by the C program using
+    only the sifdecoder (In both situations, CUTEst need(ed) to be installed.)
 
-* __selectproblems.rb__: Select problems using the options from `options.rc`, or
-  the default options, or from the command line. The problems meeting the
-  criteria are stored on the file `problem.list`.
-* __options.rc__: Options for the `selectproblems.rb` script. If this file is
-  erased, a default can be generated running the script.
-* __problem.list__: Output from the script `selectproblems.rb`. Originally, this
-  file does not exits.
-* __getcodeinfo/getcodeinfo.sh__: Generates the file sif.dcd using the CUTEst
-  interface in __getcodeinfo/__.
-* __sif.dcd__: File with the same problems from `sif.bsc`, and information
-  generated from the CUTEst interface. All information is as declared in the
-  .SIF files, therefore hhe number of variables and constraints are identified
-  as a number, i.e., not variable. 
-* __getsiflist.rb__: Retrieves from site [1] the list of problems with
-  information and generates the file sif.bsc
-* __sif.bsc__: File with all problems in the site, the number of variables,
-  constraints, type of function, type of constraints, and some other
-  informations. Check [2] for complete relation. This file is formatted for
-  easier reading/parsing. No information from this file is being used now
-* __README.md__: This file.
-* __LICENSE__: License file
+Currently, the program consist of scripts to run sifdecoder to all problems and
+select problem according to (hardcoded) criterions.
 
-[1] http://www.cuter.rl.ac.uk/Problems/mastsif.shtml
+The expected changes are
 
-[2] http://www.cuter.rl.ac.uk/Problems/classification.shtml
-
+  - make this a package and create executable files using this package;
+  - make it work with a command line interface;
+  - create a graphic interface, if someone accepts the job;
+  - make this compatible with Python 2, if possible.
 
 * * *
 Installing and Running
 ----------------------
 
-The default use will be to select the problems. Edit the file options.rc and run
+You need python 3 to run the scripts, which is the version expected by the
+command `python`.
+
+No installation is required, and unless the sif problems were updated since
+
+    2015, January, 16th
+
+there is no need to update the sif.json list. Otherwise, you need to install
+CUTEst (only sifdecoder is needed), and run
+
+    $ ./src/gen-json.py > sif.json
+
+To select the problems according to your criteria, you have to open the file
+`select-cute-problems.py`, modify it, and then run
     
-    $ ./selectproblems.rb
+    $ ./select-cute-problems.py
 
-The problem list will be the file `problem.list`.
-
-If you want to override any option with the command line you can use
-
-    $ ./selectproblems.rb --<option> <value>
-    
-Where `<option>` must be a valid option. Run with `--usage` for list.
-
-Generate (or update) `sif.bsc` with
-
-    $ ./gensiflist.rb
-
-Generate (or update) `sif.dcd` with
-
-    $ cd getcodedinfo
-    $ ./getcodedinfo.sh
-
-WARNING: Generating `sif.dcd` requires a working installation of CUTEst and will
-take a reasonable amount of time.
+The list will be printed on the default output and can redirect it as you wish.
+This is obviously bad, and will be changed.
 
 * * *
 License
