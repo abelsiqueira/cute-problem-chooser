@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-import subprocess
+import json
 import os
+import subprocess
+
 def get_problem_data(problem):
     out = subprocess.check_output(["sifdecoder", problem])
     out = out.decode('utf-8')
@@ -36,7 +38,8 @@ def get_problem_data(problem):
     return data
 
 try:
-    sifdir = os.environ["MASTSIF"]
+    #sifdir = os.environ["MASTSIF"]
+    sifdir = "tmpdir/"
 except:
     print("ERROR: $MASTSIF not found. Have you installed CUTEst?")
 
